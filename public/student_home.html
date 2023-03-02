@@ -1,9 +1,77 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="StyleSheet" href="/CSS/stu_home.css">
         <title> Wellcome to UNI-LIB </title>
+        
+        
+        
     </head>
     <body>
-<h1> this is students home page </h1>
+        <div class="header">
+            <h1>Welcome to UNI-LIB students</h1>
+            <p> - Explore whole world by just one click - </p>
+           
+          </div>
+          
+          <div class="navbar">
+            <a href="/student_home.html">HOME</a>
+            <a href="/s_books.html">SEARCH</a>
+            <a href="/index.html" class="right">LOGOUT</a>
+          </div>
+          
+          <div class="row">
+            <div class="side">
+              <h2>About UNI-LIB</h2>
+            
+              <div class="img3"></div>
+              <p>UNI_LIB is bulid by NSBM green university team in 2022</p>
+              <h5>MY PROFILE</h5>
+
+              <form action="http://localhost:8080/profile" method="post">
+              <input type="submit" value="CHECK PROFILE">
+              </form>
+              <br>
+              <form action="http://localhost:8080/student_com" method="post">
+              Name: <input type="text" name="usrname" placeholder="Enter your name">
+              <textarea rows="4" cols="50" name="comment" placeholder="Comment your thoughts about UNI-LIB..."></textarea>
+              <br>
+              <input type="submit" value="POST">
+              </form>
+
+              <br>
+
+            </div>
+
+
+            <div class="main">
+              <div class="sechead">
+              <h1><b> - TOP BOOKS - </b></h1>
+            </div>
+              <h2>Superintelligence: Paths, Dangers, Strategies</h2>
+              <h5>Nick Bostrom</h5>
+                <div class="img1"></div>
+              <p>About..</p>
+              <p>As Hollywood has been asking for years, what happens when machines surpass humans in general intelligence? Will artificial agents save or destroy us? In Superintelligence, author Nick Bostrom attempts to answer that question and others by laying a foundation for understanding the future of humanity and intelligent life. He takes readers on a fascinating journey that begins with thoughts on the human condition and ends with the sometimes terrifying future of intelligent life. Bostrom’s important questions and themes that hinge on morality make Superintelligence a must-read for anyone aspiring to greatness in the world of computer science.</p>
+
+              <button class="button">Explore More...</button>
+              <br>
+              <br>
+
+              <h2>The Big Short: Inside the Doomsday Machine</h2>
+              <h5>By Michael Lewis</h5>
+              <div class="img2"></div>
+              <p>About..</p>
+              <p>"The Big Short" (2010) is a work of nonfiction that delves into the 2007-09 financial crisis, or the Great Recession. Through character-driven narratives, Michael Lewis digs deep into the events leading up to the crash, such as the bursting of the real estate bubble and the creation of the credit default swap market.</p>
+              
+              
+              <button class="button">Explore More...</button>
+            </div>
+          </div>
+          
+          <div class="footer">
+            <h2>UNI-LIB 2022</h2>
+
+              
     </body>
 </html>

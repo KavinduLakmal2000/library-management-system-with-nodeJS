@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Find Books</title>
+        <link rel="StyleSheet" href="/CSS/stu_home.css">
+    </head>
+
+<body>
+
+    <div class="header">
+        <h1>Welcome to UNI-LIB students</h1>
+        <p> - Explore whole world by just one click - </p>
+       
+      </div>
+      
+      <div class="navbar">
+        <a href="/student_home.html">HOME</a>
+        <a href="/index.html" class="right">LOGOUT</a>
+      </div>
+      
+      <div class="row">
+        <div class="side">
+          <h2>About UNI-LIB</h2>
+        
+          <div class="img3"></div>
+          <p>UNI_LIB is bulid by NSBM green university team in 2022</p>
+          <h5>MY PROFILE</h5>
+
+          <form action="http://localhost:8080/profile" method="post">
+          <input type="submit" value="CHECK PROFILE">
+          </form>
+          <br>
+          <form action="http://localhost:8080/student_com" method="post">
+          Name: <input type="text" name="usrname" placeholder="Enter your name">
+          <textarea rows="4" cols="50" name="comment" placeholder="Comment your thoughts about UNI-LIB..."></textarea>
+          <br>
+          <input type="submit" value="POST">
+          </form>
+
+          <br>
+
+        </div>
+
+        <div class="main">
+            <div class="sechead">
+                <h1><b> - CATEGORYS - </b></h1>
+                <br>
+                <form action="http://localhost:8080/comp" method="post">
+                    <input type="text" placeholder="Search Computing Books here" name="bookname1">
+                    <input type="submit" value="SEARCH COMPUTING">
+                </form>
+                <br>
+                <br>
+                <form action="http://localhost:8080/bus" method="post">
+                    <input type="text" placeholder="Search Business Books here" name="bookname2">
+                    <input type="submit" value="SEARCH BUSINESS">
+                </form>
+                <br>
+                <br>
+                <form action="http://localhost:8080/engi" method="post">
+                    <input type="text" placeholder="Search Engineering Books here" name="bookname3">
+                    <input type="submit" value="SEARCH ENGINEERING">
+                </form>
+                <br>
+                <br>
+                <form action="http://localhost:8080/other" method="post">
+                    <input type="text" placeholder="Search Other Books here" name="bookname4">
+                    <input type="submit" value="SEARCH OTHER">
+                </form>
+
+                </div>
+                </div>
+
+
+</body>
+</html>

@@ -7,6 +7,7 @@ let alert = require('alert');
 
 
 const uri = "mongodb+srv://kavinduLakmal:21871@cluster0.pccgpzv.mongodb.net/?retryWrites=true&w=majority";
+
 const client = new MongoClient(uri);
 
 var username;
@@ -19,6 +20,7 @@ const port = 8080;
 
 app.use(express.static(__dirname+'/public'));
 
+app.engine('html', require('ejs').renderFile);
 
 // ==================================================================================== login =================================================
 app.post("/ulogin", async (req, res) => {
@@ -113,10 +115,183 @@ else{
 
 });
 
-//==============================================================================================================================================
+//================================================================== students comment upload ============================================================================
+
+
+app.post("/student_com", async (req, res) => {
+
+    var username = req.body.usrname;
+    var com = req.body.comment;
+
+    client.connect();
+   const result = await client.db("unilib").collection("Student Comments").insertOne({
+        User_Name: username,
+        Comment: com
+    });
+
+    if(result){
+        alert("Your comment has been posted!");
+        res.sendFile(__dirname + "/public/student_home.html");
+    }
+
+    else{
+        alert("pls try again!");
+    }
+
+
+
+});
+
+//========================================================================= Show students profile ===================================================================
+app.post("/profile", async (req, res) => {
+    
+    client.connect();
+
+    const result = await client.db("unilib").collection("register").findOne({ User_Name: username});
+     console.log(result);
+     //const myJSON = JSON.stringify(result); //converting obj to string
+
+     const objectArray = Object.entries(result);
+
+    res.write('<html><head><title>Students Account Data</title> <link rel="StyleSheet" href="/CSS/profile.css"> </head><body>');
+    res.write('<h1>STUDENT ACCOUNT DETAILS</h1>');
+    res.write('<br>');
+    res.write('<table id="pro">');
+    res.write('<tr><th>Account</th><th>Details</th></tr>');
+
+     objectArray.forEach(([key, value]) => {
+       
+        //res.write('<p>'+key+'</p>');
+        //res.write('<p>'+value+'</p>');
+
+       
+        res.write('<tr><td>'+key+'</td><td>'+value+'</td></tr>');
+
+     });
+       
+    res.end('</body></html>');   
+
+});
+// ==================================================================== admin books upload ==========================================================
+
+app.post("/admin", async (req, res) => {
+
+    var bookname = req.body.bname;
+    var author = req.body.aut;
+    var date = req.body.date;
+    var country = req.body.country;
+
+    client.connect();
+    await client.db("unilib").collection("Computing books").insertOne({
+
+       Book_Name: bookname,
+       Author: author,
+       Year: date,
+       County: country
+    });
+
+    console.log(`data has been uploaded`);
+    res.sendFile(__dirname + "/public/admin.html");
+    alert("Book has been uploaded!");
+});
+
+// ==================================================================== books sherching1 ============================================================
+app.post("/comp", async (req, res) => {
+
+    var b_name = req.body.bookname1;
+
+    const result = await client.db("unilib").collection("Computing books").findOne({ Book_Name: b_name});
+
+    if(result){
+
+        const objectArray = Object.entries(result);
+
+        res.write('<html><head><title>Book Details</title> <link rel="StyleSheet" href="/CSS/profile.css"> </head><body>');
+        res.write('<h1>'+b_name+'</h1>');
+        res.write('<br>');
+        res.write('<table id="pro">');
+        res.write('<tr><th>Book</th><th>Details</th></tr>');
+        
+        objectArray.forEach(([key, value]) => {
+
+            res.write('<tr><td>'+key+'</td><td>'+value+'</td></tr>');
+    
+         });
+
+        res.end('</body></html>');
+    }
+    else{
+        alert("Book is not found! try again!")
+    }
+});
+
+// ================================================================= books serching2 ============================================================
+
+app.post("/bus", async (req, res) => {
+
+    var b_name = req.body.bookname1;
+
+    const result = await client.db("unilib").collection("Business Books").findOne({ Book_Name: b_name});
+
+    if(result){
+
+        const objectArray = Object.entries(result);
+
+        res.write('<html><head><title>Book Details</title> <link rel="StyleSheet" href="/CSS/profile.css"> </head><body>');
+        res.write('<h1>'+b_name+'</h1>');
+        res.write('<br>');
+        res.write('<table id="pro">');
+        res.write('<tr><th>Book</th><th>Details</th></tr>');
+        
+        objectArray.forEach(([key, value]) => {
+
+            res.write('<tr><td>'+key+'</td><td>'+value+'</td></tr>');
+    
+         });
+
+        res.end('</body></html>');
+    }
+    else{
+        alert("Book is not found! try again!");
+    }
+});
+
+// ========================================================================= books serching3 =======================================================
+
+app.post("/engi", async (req, res) => {
+
+    var b_name = req.body.bookname1;
+
+    const result = await client.db("unilib").collection("Engineering Books").findOne({ Book_Name: b_name});
+
+    if(result){
+
+        const objectArray = Object.entries(result);
+
+        res.write('<html><head><title>Book Details</title> <link rel="StyleSheet" href="/CSS/profile.css"> </head><body>');
+        res.write('<h1>'+b_name+'</h1>');
+        res.write('<br>');
+        res.write('<table id="pro">');
+        res.write('<tr><th>Book</th><th>Details</th></tr>');
+        
+        objectArray.forEach(([key, value]) => {
+
+            res.write('<tr><td>'+key+'</td><td>'+value+'</td></tr>');
+    
+         });
+
+        res.end('</body></html>');
+    }
+    else{
+        alert("Book is not found! try again!")
+    }
+});
+
+
 
 app.get("/", function (req, res) {
-        res.sendFile(__dirname + "/public/index.html");
+       res.sendFile(__dirname + "/public/index.html");
+     
     
 });
 
